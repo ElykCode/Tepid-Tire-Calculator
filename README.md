@@ -14,3 +14,6 @@ The cheap-hack-but-it-works way of fixing this is to expand the radius of the pa
 
 ## Formula
 We are using the following formula: V = pi * r^2 * 2 * pi * R, where V is volume, r is the minor radius, and R is the adjusted major radius. That adjustment is simply adding the minor radius (1/2 tire width) to the major radius (1/2 rim diameter), to make it closer to a proper torus shape.
+
+## Implementation && Operation
+The program should ask the user for the ISO rim diameter and tire width of each tire to compare. The program may eventually be able to take a CSV file with data inputs to compare large numbers of tires, but that's out of scope for now.
