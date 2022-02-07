@@ -33,14 +33,14 @@ int main(int argc, char **argv)
 	int iso_diameter;
 	// int for ISO tire width
 	int iso_width;
-	// there are always two data points per tire, but an unknown number of tires
-	// thus we need a vector of tire data arrays with two spots
-	std::vector<int[2]> tires;
-	
+	// there are always two data points per tire, and two tires
+	int tires[2][2];
+
+	int loop_count = 0;
 
 	// print welcome message
 	std::cout <<
-		"COMPARE TIRE VOLUME\n"
+		"COMPARE VOLUME OF TWO TIRES\n"
 		"-------------------\n"
 		"You will need the ISO rim diameter and the ISO tire width.\n"
 		"This should be printed on the tire, e.g. '622x32'\n"
@@ -55,34 +55,41 @@ int main(int argc, char **argv)
 	// end debug
 
 	if (tolower(user_answer) != 'y') // evaluate the user answer
-		finished=true;
+		exit(1);
 	
-	// repeat the data entry loop until the user is finished
-	while (finished == false) 
+	// get data for two tires
+	for (int i=0;i<2;i++)
 	{
-		std::cout << "\nEnter ISO rim diameter:\t\t";
+		std::cout << "\nEnter ISO rim diameter for tire " << i+1 << ":\t";
 		std::cin >> iso_diameter;
 		ClearStreamBuffer();
-		
+
+		// add diameter to the array
+		tires[i][0]=iso_diameter;
+
 		// debug
-		std::cout << "got: " << iso_diameter;
+		//std::cout << "got: " << iso_diameter;
 		// end debug
 
-		std::cout << "\nEnter ISO tire width:\t\t";
+		std::cout << "\nEnter ISO width for tire " << i+1 << ":\t\t";
 		std::cin >> iso_width;
 		ClearStreamBuffer();
 
+		// store width in the array for later use
+		tires[i][1]=iso_width;
+
 		// debug
-		std::cout << "got: " << iso_width;
+		//std::cout << "got: " << iso_width;
 		// end debug
-		
-		std::cout << "\nAre you finished? (Y/N):\t";
-		std::cin >> user_answer;
-		ClearStreamBuffer();
-	
-		if (tolower(user_answer) == 'y') // evaluate the user answer
-			finished=true;
 	}
+
+	// debug
+	for (int i=0;i<2;i++)
+	{
+		std::cout << "Tire " << i+1 << ": " << tires[i][0] << " x " << tires[i][1] << std::endl;
+	}
+	// end debug
+
 
 	return 0;
 }
