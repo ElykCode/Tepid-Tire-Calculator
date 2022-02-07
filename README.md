@@ -9,5 +9,8 @@ Yes, a tire is a poor approximation of a torus. According to the Marriam-Webster
 
 If you're not familiar with how bike tires are measured, the ISO rim diameter we are using is actually the bead seat diameter (BSD). The BSD is the diameter of the bead seat, which is where the bead of the tire presses against the rim. This brings up an obvious issue - using those numbers, you would be calculating a torus where the axis *does* intersect with the circle. Furthermore, that is assuming an inflated tire is actually a circle (it's not), but it's close enough to a circle for our purposes.
 
-## The solution
+# The solution
 The cheap-hack-but-it-works way of fixing this is to expand the radius of the path the axis is taking by the radius of the tire. In other words, the tire is a cylinder stretched around an inner circle - so all we have to do to make the tire match the definition of a torus is to expand the inner circle a bit until it's in the center of the tire cylinder. That's easily done by adding the radius of the tire to the radius of the circle.
+
+## Formula
+We are using the following formula: V = pi * r^2 * 2 * pi * R, where V is volume, r is the minor radius, and R is the adjusted major radius. That adjustment is simply adding the tire radius (minor radius) to the major radius (rim diameter), to make it closer to a proper torus.
