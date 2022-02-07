@@ -50,7 +50,11 @@ int main(int argc, char **argv)
 	std::cin >> user_answer; // read user answer
 	ClearStreamBuffer(); // clear the buffer
 	
-	if (user_answer != 'y') // evaluate the user answer
+	// debug
+	std::cout << "User answer is: " << user_answer << std::endl;
+	// end debug
+
+	if (tolower(user_answer) != 'y') // evaluate the user answer
 		finished=true;
 	
 	// repeat the data entry loop until the user is finished
@@ -60,10 +64,24 @@ int main(int argc, char **argv)
 		std::cin >> iso_diameter;
 		ClearStreamBuffer();
 		
+		// debug
+		std::cout << "got: " << iso_diameter;
+		// end debug
 
 		std::cout << "\nEnter ISO tire width:\t\t";
 		std::cin >> iso_width;
 		ClearStreamBuffer();
+
+		// debug
+		std::cout << "got: " << iso_width;
+		// end debug
+		
+		std::cout << "\nAre you finished? (Y/N):\t";
+		std::cin >> user_answer;
+		ClearStreamBuffer();
+	
+		if (tolower(user_answer) == 'y') // evaluate the user answer
+			finished=true;
 	}
 
 	return 0;
